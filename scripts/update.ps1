@@ -20,7 +20,11 @@ if (-not (Test-Path "CLAUDE.md")) {
 # --- 古いファイルの削除 ---
 Write-Host "古いファイルを削除中..." -ForegroundColor Yellow
 
-$oldFiles = @("scripts\install_pkgs.sh", ".claude\agents\unsplash-image-finder.md")
+$oldFiles = @(
+    "scripts\install_pkgs.sh",
+    ".claude\agents\unsplash-image-finder.md",
+    ".claude\skills\unsplash-image-finder\unsplash-search.js"
+)
 foreach ($f in $oldFiles) {
     if (Test-Path $f) { Remove-Item $f -Force }
 }
@@ -31,7 +35,7 @@ Write-Host "  done"
 # --- ディレクトリ作成 ---
 Write-Host "ディレクトリを準備中..." -ForegroundColor Yellow
 
-$dirs = @(".claude\skills\unsplash-image-finder", ".claude\skills\one-page-site-builder\references", "scripts")
+$dirs = @(".claude\skills\unsplash-image-finder", ".claude\skills\unsplash-image-finder\references", ".claude\skills\one-page-site-builder\references", "scripts")
 foreach ($d in $dirs) {
     if (-not (Test-Path $d)) { New-Item -ItemType Directory -Path $d -Force | Out-Null }
 }
@@ -62,7 +66,10 @@ $files = @(
     ".env.local.example",
     ".gitignore",
     ".claude\skills\unsplash-image-finder\SKILL.md",
-    ".claude\skills\unsplash-image-finder\unsplash-search.js",
+    ".claude\skills\unsplash-image-finder\unsplash-search.sh",
+    ".claude\skills\unsplash-image-finder\unsplash-health-check.sh",
+    ".claude\skills\unsplash-image-finder\unsplash-track.sh",
+    ".claude\skills\unsplash-image-finder\references\setup.md",
     ".claude\skills\one-page-site-builder\SKILL.md",
     ".claude\skills\one-page-site-builder\references\tech-stack.md",
     ".claude\skills\one-page-site-builder\references\navigation-spec.md",

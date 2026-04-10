@@ -32,12 +32,15 @@ echo -e "${YELLOW}古いファイルを削除中...${NC}"
 rm -rf scripts/install_pkgs.sh
 rm -rf dev-tools/
 rm -f .claude/agents/unsplash-image-finder.md
+# Node.js 版から Shell 版への移行で不要になったファイル
+rm -f .claude/skills/unsplash-image-finder/unsplash-search.js
 
 echo "  done"
 
 # --- ディレクトリ作成 ---
 echo -e "${YELLOW}ディレクトリを準備中...${NC}"
 mkdir -p .claude/skills/unsplash-image-finder
+mkdir -p .claude/skills/unsplash-image-finder/references
 mkdir -p .claude/skills/one-page-site-builder/references
 mkdir -p scripts
 echo "  done"
@@ -62,7 +65,10 @@ download ".rgignore"
 download ".env.local.example"
 download ".gitignore"
 download ".claude/skills/unsplash-image-finder/SKILL.md"
-download ".claude/skills/unsplash-image-finder/unsplash-search.js"
+download ".claude/skills/unsplash-image-finder/unsplash-search.sh"
+download ".claude/skills/unsplash-image-finder/unsplash-health-check.sh"
+download ".claude/skills/unsplash-image-finder/unsplash-track.sh"
+download ".claude/skills/unsplash-image-finder/references/setup.md"
 download ".claude/skills/one-page-site-builder/SKILL.md"
 download ".claude/skills/one-page-site-builder/references/tech-stack.md"
 download ".claude/skills/one-page-site-builder/references/navigation-spec.md"
@@ -74,8 +80,11 @@ download "package.json"
 download "package-lock.json"
 download "README.md"
 
-# update.sh に実行権限を付与
+# 実行権限を付与
 chmod +x scripts/update.sh 2>/dev/null || true
+chmod +x .claude/skills/unsplash-image-finder/unsplash-search.sh 2>/dev/null || true
+chmod +x .claude/skills/unsplash-image-finder/unsplash-health-check.sh 2>/dev/null || true
+chmod +x .claude/skills/unsplash-image-finder/unsplash-track.sh 2>/dev/null || true
 
 # --- 完了 ---
 echo ""

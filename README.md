@@ -10,6 +10,13 @@ This is an unofficial, community-created project and is not affiliated with, end
 
 ## 更新履歴
 
+- 2026年 4月10日:
+  - `unsplash-image-finder` の画像検索スクリプトを Node.js (`unsplash-search.js`) からシェルスクリプト (`unsplash-search.sh` / `unsplash-health-check.sh` / `unsplash-track.sh`) に完全移行
+  - Node.js・npm・undici が不要になり、セットアップがシンプル化
+  - プロキシ対応をシェルスクリプト内の `curl` オプションで実装。Claude Code クラウド環境でも `npm install` なしで動作
+  - `references/setup.md` を追加（Unsplash API キーの設定方法をスキル内に集約）
+  - アップデートスクリプト（`update.sh` / `update.ps1`）を新しいスクリプト構成に対応
+
 - 2026年 4月 9日:
   - `SessionStart` フックを追加。クラウド環境（`$CLAUDE_CODE_REMOTE = "true"`）でのみ `npm install` を自動実行するよう設定
   - `node install` 不要にしていたが、Claude Codeクラウド環境では、プロキシを使う必要があるため、 `undici` を使い対応するように変更
@@ -49,8 +56,7 @@ This is an unofficial, community-created project and is not affiliated with, end
 
 ## 必要なサービスと準備
 
-- **Claude Code の事前インストール** （Cloude Code on the Web でも動作します）
-- **Nodeのインストール**
+- **Claude Code の事前インストール** （Claude Code on the Web でも動作します）
 - **Visual Studio Code**
   - **おすすめの拡張機能**
   	- Claude Code
@@ -112,22 +118,13 @@ cp .env.local.example .env.local
    以下のコマンドでテストしてください。
 
    ```bash
-   node .claude/skills/unsplash-image-finder/unsplash-search.js "hello"
+   bash .claude/skills/unsplash-image-finder/unsplash-health-check.sh
    ```
 
 以上で完了です。
 
-### プロキシが必要な環境の場合（Claude Code クラウド環境など）
-
-**Claude Code on the Web（クラウドサンドボックス環境）** など、プロキシを経由して外部通信を行う環境では、`undici` パッケージが必要です。
-
-```bash
-npm install
-```
-
-`npm install` を実行すると `undici` がインストールされ、プロキシ経由での Unsplash API アクセスが有効になります。
-
-ローカル環境（通常のプロキシなし）では `npm install` は不要です。
+> **Claude Code on the Web（クラウドサンドボックス環境）でも動作します。**
+> Node.js・npm は不要です。シェルスクリプトがプロキシ環境を自動検出し、`curl` 経由で Unsplash API にアクセスします。
 
 ## ポイント
 
@@ -173,6 +170,10 @@ claude1page/
 │   ├── launch.json    # ローカル開発サーバー設定
 │   └── skills/        # スキル定義
 │       └── unsplash-image-finder/
+│           ├── unsplash-search.sh        # 画像検索スクリプト
+│           ├── unsplash-health-check.sh  # 動作確認スクリプト
+│           ├── unsplash-track.sh         # ダウンロード記録スクリプト
+│           └── references/setup.md       # APIキー設定ガイド
 ├── CLAUDE.md          # Claude Code用の指示書
 ├── .env.local.example # API設定テンプレート
 └── README.md          # このファイル
