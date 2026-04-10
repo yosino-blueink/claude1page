@@ -1,16 +1,9 @@
 {
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "startup",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ \"$CLAUDE_CODE_REMOTE\" = \"true\" ] && (cd \"$CLAUDE_PROJECT_DIR\" && npm install 2>>/tmp/claude-npm-install.log) || true",
-            "timeout": 60
-          }
-        ]
-      }
+  "permissions": {
+    "allow": [
+      "Bash(bash *.claude/skills/unsplash-image-finder/unsplash-search.sh*)",
+      "Bash(bash *.claude/skills/unsplash-image-finder/unsplash-track.sh*)",
+      "Bash(bash *.claude/skills/unsplash-image-finder/unsplash-health-check.sh*)"
     ]
   }
 }
