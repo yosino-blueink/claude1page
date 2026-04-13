@@ -25,17 +25,23 @@ $oldFiles = @(
     ".claude\agents\unsplash-image-finder.md",
     ".claude\skills\unsplash-image-finder\unsplash-search.js"
 )
+$oldDirs = @(
+    ".claude\skills\one-page-site-builder\references"
+)
 foreach ($f in $oldFiles) {
     if (Test-Path $f) { Remove-Item $f -Force }
 }
 if (Test-Path "dev-tools") { Remove-Item "dev-tools" -Recurse -Force }
+foreach ($d in $oldDirs) {
+    if (Test-Path $d) { Remove-Item $d -Recurse -Force }
+}
 
 Write-Host "  done"
 
 # --- ディレクトリ作成 ---
 Write-Host "ディレクトリを準備中..." -ForegroundColor Yellow
 
-$dirs = @(".claude\skills\unsplash-image-finder", ".claude\skills\unsplash-image-finder\references", ".claude\skills\one-page-site-builder\references", "scripts")
+$dirs = @(".claude\skills\unsplash-image-finder", ".claude\skills\unsplash-image-finder\references", ".claude\skills\one-page-site-builder", "scripts")
 foreach ($d in $dirs) {
     if (-not (Test-Path $d)) { New-Item -ItemType Directory -Path $d -Force | Out-Null }
 }
@@ -71,10 +77,6 @@ $files = @(
     ".claude\skills\unsplash-image-finder\unsplash-track.sh",
     ".claude\skills\unsplash-image-finder\references\setup.md",
     ".claude\skills\one-page-site-builder\SKILL.md",
-    ".claude\skills\one-page-site-builder\references\tech-stack.md",
-    ".claude\skills\one-page-site-builder\references\navigation-spec.md",
-    ".claude\skills\one-page-site-builder\references\content-structure.md",
-    ".claude\skills\one-page-site-builder\references\image-optimization.md",
     "scripts\update.sh",
     "scripts\update.ps1",
     "package.json",

@@ -34,6 +34,8 @@ rm -rf dev-tools/
 rm -f .claude/agents/unsplash-image-finder.md
 # Node.js 版から Shell 版への移行で不要になったファイル
 rm -f .claude/skills/unsplash-image-finder/unsplash-search.js
+# one-page-site-builder references を SKILL.md に統合
+rm -rf .claude/skills/one-page-site-builder/references
 
 echo "  done"
 
@@ -41,7 +43,7 @@ echo "  done"
 echo -e "${YELLOW}ディレクトリを準備中...${NC}"
 mkdir -p .claude/skills/unsplash-image-finder
 mkdir -p .claude/skills/unsplash-image-finder/references
-mkdir -p .claude/skills/one-page-site-builder/references
+mkdir -p .claude/skills/one-page-site-builder
 mkdir -p scripts
 echo "  done"
 
@@ -70,10 +72,6 @@ download ".claude/skills/unsplash-image-finder/unsplash-health-check.sh"
 download ".claude/skills/unsplash-image-finder/unsplash-track.sh"
 download ".claude/skills/unsplash-image-finder/references/setup.md"
 download ".claude/skills/one-page-site-builder/SKILL.md"
-download ".claude/skills/one-page-site-builder/references/tech-stack.md"
-download ".claude/skills/one-page-site-builder/references/navigation-spec.md"
-download ".claude/skills/one-page-site-builder/references/content-structure.md"
-download ".claude/skills/one-page-site-builder/references/image-optimization.md"
 download "scripts/update.sh"
 download "scripts/update.ps1"
 download "package.json"
