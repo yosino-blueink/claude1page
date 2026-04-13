@@ -10,6 +10,11 @@ This is an unofficial, community-created project and is not affiliated with, end
 
 ## 更新履歴
 
+- 2026年 4月13日:
+  - `one-page-site-builder` スキルの `references/` 配下4ファイル（tech-stack・navigation-spec・content-structure・image-optimization）を `SKILL.md` に統合・集約
+  - スキルファイルの構成をシンプル化し、参照ファイルなしで完結するように刷新
+  - アップデートスクリプト（`update.sh` / `update.ps1`）で古い `references/` を削除するよう対応
+
 - 2026年 4月10日:
   - `unsplash-image-finder` の画像検索スクリプトを Node.js (`unsplash-search.js`) からシェルスクリプト (`unsplash-search.sh` / `unsplash-health-check.sh` / `unsplash-track.sh`) に完全移行
   - Node.js・npm・undici が不要になり、セットアップがシンプル化
@@ -169,11 +174,13 @@ claude1page/
 │   ├── settings.json  # Claude Code設定
 │   ├── launch.json    # ローカル開発サーバー設定
 │   └── skills/        # スキル定義
-│       └── unsplash-image-finder/
-│           ├── unsplash-search.sh        # 画像検索スクリプト
-│           ├── unsplash-health-check.sh  # 動作確認スクリプト
-│           ├── unsplash-track.sh         # ダウンロード記録スクリプト
-│           └── references/setup.md       # APIキー設定ガイド
+│       ├── unsplash-image-finder/
+│       │   ├── unsplash-search.sh        # 画像検索スクリプト
+│       │   ├── unsplash-health-check.sh  # 動作確認スクリプト
+│       │   ├── unsplash-track.sh         # ダウンロード記録スクリプト
+│       │   └── references/setup.md       # APIキー設定ガイド
+│       └── one-page-site-builder/
+│           └── SKILL.md                  # ワンページサイト生成スキル（技術仕様・ナビ仕様など統合）
 ├── CLAUDE.md          # Claude Code用の指示書
 ├── .env.local.example # API設定テンプレート
 └── README.md          # このファイル
