@@ -32,6 +32,12 @@ if [ -z "$DOWNLOAD_LOCATION" ]; then
   exit 1
 fi
 
+# api.unsplash.com 以外への送信を拒否（APIキー漏洩防止）
+if [[ ! "$DOWNLOAD_LOCATION" =~ ^https://api\.unsplash\.com/ ]]; then
+  echo "error: URLは api.unsplash.com から始まる必要があります" >&2
+  exit 1
+fi
+
 # curl はプロキシ環境変数（HTTPS_PROXY / HTTP_PROXY 等）を自動認識する
 curl -sf \
   "$DOWNLOAD_LOCATION" \
